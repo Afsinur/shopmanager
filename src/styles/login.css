@@ -1,0 +1,288 @@
+.signup-body {
+  font-family: "Poppins", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  padding: 25px 0;
+  align-items: center;
+}
+
+.login-body {
+  font-family: "Poppins", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  padding: 25px 0;
+  height: 100vh;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.color {
+  text-align: center;
+  text-decoration: none;
+  background-color: #0099ff !important;
+  color: rgb(255, 255, 255) !important;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 0px;
+
+  background-color: rgba(0, 0, 0, 0.05);
+  width: 260px;
+  margin: auto !important;
+}
+
+.form1 {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 40px;
+}
+
+.form1 input {
+  margin: 10px 0;
+  padding: 10px;
+
+  border-radius: 5px;
+  border: 0px;
+
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+[type="radio"] {
+  margin-right: 10px !important;
+}
+
+.gender-p {
+  margin-bottom: 10px;
+}
+
+.gender-p label {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.names-container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+}
+
+.already-acccount-class a {
+  margin-left: 5px;
+  text-decoration: none;
+  color: royalblue;
+}
+
+.already-acccount-class a:hover {
+  text-decoration: underline;
+}
+
+.names-container span {
+  width: 47%;
+}
+
+.txt-c {
+  display: flex;
+  flex-direction: column;
+}
+
+.txt-c-01 {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: start;
+}
+
+.log-in {
+  cursor: pointer;
+  font-size: 16px;
+  background-color: royalblue !important;
+  color: white !important;
+}
+
+.log-in-01 {
+  cursor: pointer;
+  font-size: 16px;
+  background-color: royalblue !important;
+  color: white !important;
+  margin-top: 45px !important;
+}
+.margin {
+  margin-top: -125px;
+}
+
+p span {
+  display: flex;
+  flex-direction: row;
+}
+.li-color {
+  text-align: left;
+  text-decoration: none;
+}
+
+form.signup-form {
+  width: 500px;
+  margin: 20px auto !important;
+}
+
+.signup-form p {
+  display: flex;
+  flex-direction: row;
+}
+
+.already-acccount-class {
+  font-size: 0.9em;
+  text-align: center;
+  font-weight: 500;
+}
+
+.already-acccount-class a {
+  width: 500px;
+}
+
+.pasa-pasi p {
+  flex-direction: column;
+  padding: 20px;
+}
+
+.pasa-pasi p :nth-child(1) {
+  margin-right: 10px;
+}
+
+.pasa-pasi p :nth-child(2) {
+  border-left: 1px solid #404040;
+  margin-left: 10px;
+}
+
+.deep {
+  color: #4b4f51;
+  font-size: 13px;
+  margin-top: unset;
+
+  text-align: center;
+}
+
+p span {
+  display: flex;
+  flex-direction: column;
+  margin: unset !important;
+}
+
+.chobi {
+  margin: unset;
+  align-self: center;
+  width: 60px;
+  height: auto;
+  place-items: center;
+}
+
+.remember {
+  font-size: 0.9em;
+  color: #4b4f51;
+  font-weight: 300;
+  display: flex;
+  justify-content: last baseline;
+}
+
+[type="checkbox"] {
+  margin: unset !important;
+
+  margin-right: 10px !important;
+}
+
+.register {
+  font-size: 0.9em;
+  text-align: center;
+  font-weight: 500;
+}
+
+.register p a {
+  margin-left: 5px;
+  text-decoration: none;
+  color: royalblue;
+}
+
+.register p a:hover {
+  text-decoration: underline;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container > .txt-c {
+  margin-left: unset !important;
+}
+
+.logo-container-1st-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo-container-2nd-div {
+  margin-left: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo-container-2nd-div > h2 {
+  margin-bottom: unset !important;
+}
+
+.txt-left {
+  text-align: left;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: row;
+
+  align-items: flex-start;
+}
+
+.checkbox-container input {
+  margin: 5px 5px 0 0 !important;
+}
+
+.checkbox-container p {
+  margin: 0 0 0 5px !important;
+  font-size: 14px;
+  color: #404040;
+}
+
+.create-txt-h1 {
+  margin-bottom: unset;
+}
+
+@media screen and (max-width: 425px) {
+  .form1 {
+    width: 86%;
+  }
+
+  .create-txt-h1 {
+    font-size: 7vw;
+    text-align: center;
+  }
+}
