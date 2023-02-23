@@ -1,3 +1,19 @@
+h1 {
+  color: var(--deep-black);
+  font-weight: 400;
+}
+
+p,
+label {
+  color: var(--light-black);
+}
+
+p,
+label,
+::placeholder {
+  font-weight: 300;
+}
+
 .signup-body {
   font-family: "Poppins", sans-serif;
 
@@ -105,7 +121,7 @@
   display: flex;
   flex-direction: column;
 
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .log-in {
@@ -120,10 +136,6 @@
   font-size: 16px;
   background-color: royalblue !important;
   color: white !important;
-  margin-top: 45px !important;
-}
-.margin {
-  margin-top: -125px;
 }
 
 p span {
@@ -148,7 +160,6 @@ form.signup-form {
 .already-acccount-class {
   font-size: 0.9em;
   text-align: center;
-  font-weight: 500;
 }
 
 .already-acccount-class a {
@@ -170,7 +181,6 @@ form.signup-form {
 }
 
 .deep {
-  color: #4b4f51;
   font-size: 13px;
   margin-top: unset;
 
@@ -193,10 +203,9 @@ p span {
 
 .remember {
   font-size: 0.9em;
-  color: #4b4f51;
-  font-weight: 300;
   display: flex;
-  justify-content: last baseline;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 [type="checkbox"] {
@@ -208,7 +217,6 @@ p span {
 .register {
   font-size: 0.9em;
   text-align: center;
-  font-weight: 500;
 }
 
 .register p a {
@@ -269,11 +277,46 @@ p span {
 .checkbox-container p {
   margin: 0 0 0 5px !important;
   font-size: 14px;
-  color: #404040;
 }
 
 .create-txt-h1 {
   margin-bottom: unset;
+}
+
+.for-login {
+  margin-bottom: 20px;
+}
+
+.for-sign-up {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.for-sign-up > div:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.for-sign-up > div:nth-child(2) {
+  margin-left: 10px;
+}
+
+.for-sign-up > div:nth-child(2) > h1 {
+  font-size: 1.6rem;
+}
+
+.for-sign-up > div:nth-child(2) > p {
+  text-align: left;
+}
+
+[for="remember_"] {
+  user-select: none;
 }
 
 @media screen and (max-width: 425px) {
@@ -284,5 +327,9 @@ p span {
   .create-txt-h1 {
     font-size: 7vw;
     text-align: center;
+  }
+
+  .for-sign-up > div:nth-child(2) > h1 {
+    font-size: 5.2vw;
   }
 }

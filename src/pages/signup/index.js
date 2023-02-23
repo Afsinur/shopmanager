@@ -1,7 +1,19 @@
 import Link from "next/link";
 import Head from "next/head";
+import Image from "next/image";
+import { useState } from "react";
+import Return_only_number from "../../js/Return_only_number";
 
 const Signup = () => {
+  let [nid_number, set_nid_number] = useState("");
+
+  function handleKeyup(e) {
+    let x = Return_only_number(e.target.value);
+    e.target.value = x;
+
+    set_nid_number(x);
+  }
+
   return (
     <>
       <Head>
@@ -11,17 +23,27 @@ const Signup = () => {
         <link rel="icon" href="/img/logo.png" />
       </Head>
 
-      <div class="signup-body">
-        <form class="form1">
-          <div class="txt-c-01">
-            <h1 class="create-txt-h1">Create a new account</h1>
-            <p class="deep">Your secret our prority.</p>
+      <div className="signup-body">
+        <form className="form1">
+          <div className="txt-c-01 for-sign-up">
+            <div>
+              <Image
+                className="chobi"
+                src="/img/logo.png"
+                width={60}
+                height={60}
+                alt="logo"
+              />
+            </div>
+
+            <div>
+              <h1 className="create-txt-h1">Create a new account</h1>
+              <p className="deep">Your secret our prority.</p>
+            </div>
           </div>
 
-          <br />
-
           <input type="text" placeholder="Shop's Name" required />
-          <p style={{ display: "flex" }} class="names-container">
+          <div style={{ display: "flex" }} className="names-container">
             <span>
               <input
                 type="text"
@@ -30,6 +52,7 @@ const Signup = () => {
                 style={{ width: "100%" }}
               />
             </span>
+
             <span>
               <input
                 type="text"
@@ -38,33 +61,48 @@ const Signup = () => {
                 style={{ width: "100%" }}
               />
             </span>
-          </p>
+          </div>
 
           <input type="text" placeholder="Address" required />
-          <input type="number" placeholder="NID Number" required />
+          <input
+            type="text"
+            placeholder="NID Number"
+            required
+            onKeyUp={(e) => {
+              handleKeyup(e);
+            }}
+          />
           <input type="text" placeholder="Email Address" required />
-          <input type="number" placeholder="Phone Number" required />
+          <input
+            type="text"
+            placeholder="Phone Number"
+            required
+            onKeyUp={(e) => {
+              handleKeyup(e);
+            }}
+          />
 
-          <p class="gender-p">
+          <p className="gender-p">
             <input type="radio" name="Gender" id="Male" />
-            <label for="Male">Male</label>
+            <label htmlFor="Male">Male</label>
             <input type="radio" name="Gender" id="Female" />
-            <label for="Female">Female</label>
+            <label htmlFor="Female">Female</label>
             <input type="radio" name="Gender" id="Custom" />
-            <label for="Custom">Custom</label>
+            <label htmlFor="Custom">Custom</label>
           </p>
-          <div class="checkbox-container">
+
+          <div className="checkbox-container">
             <input type="checkbox" required />
             <p>
               By clicking this, you agree to our Terms & conditions.You may
               receive SMS notifications from us and can opt out at any time.
             </p>
           </div>
-          <br />
-          <input class="log-in" type="submit" value="Register" />
+
+          <input className="log-in" type="submit" value="Register" />
         </form>
 
-        <p class="already-acccount-class">
+        <p className="already-acccount-class">
           Already have an Account!
           <Link href="./">Login</Link>
         </p>

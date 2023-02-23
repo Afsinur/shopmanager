@@ -2,6 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Link from "next/link";
+import { useState } from "react";
+import Return_only_number from "../js/Return_only_number";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,10 +22,19 @@ export default function Home() {
 }
 
 function Login() {
+  let [nid_number, set_nid_number] = useState("");
+
+  function handleKeyup(e) {
+    let x = Return_only_number(e.target.value);
+    e.target.value = x;
+
+    set_nid_number(x);
+  }
+
   return (
     <div className="login-body">
       <form className="form1">
-        <div className="logo-container">
+        <div className="logo-container for-login">
           <div className="logo-container-1st-div">
             <Image
               className="chobi"
@@ -33,19 +44,26 @@ function Login() {
               alt="logo"
             />
           </div>
+
           <div className="logo-container-2nd-div">
-            <h2 className="txt-c">Shop Manager</h2>
+            <h1 className="txt-c">Shop Manager</h1>
             <p className="txt-c deep txt-left">Make It Easy!</p>
           </div>
         </div>
 
-        <br />
-
         <input type="text" placeholder="Shop's Name" required />
-        <input type="number" placeholder="Phone Number" required />
+        <input
+          type="text"
+          placeholder="Phone Number"
+          required
+          onKeyUp={(e) => {
+            handleKeyup(e);
+          }}
+        />
+
         <div className="remember">
-          <input type="checkbox" required />
-          <label> Remember me </label>
+          <input type="checkbox" required id="remember_" />
+          <label for="remember_"> Remember me </label>
         </div>
 
         <input className="log-in-01" type="submit" value="Login" />
