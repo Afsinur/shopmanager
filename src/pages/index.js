@@ -4,6 +4,7 @@ import { Inter } from "@next/font/google";
 import Link from "next/link";
 import { useState } from "react";
 import Return_only_number from "../js/Return_only_number";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,8 @@ export default function Home() {
 }
 
 function Login() {
-  let [nid_number, set_nid_number] = useState("");
+  const router = useRouter();
+  const [nid_number, set_nid_number] = useState("");
 
   function handleKeyup(e) {
     let x = Return_only_number(e.target.value);
@@ -31,9 +33,19 @@ function Login() {
     set_nid_number(x);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    router.push("/home");
+  }
+
   return (
     <div className="login-body">
-      <form className="form1">
+      <form
+        className="form1"
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
         <div className="logo-container for-login">
           <div className="logo-container-1st-div">
             <Image
@@ -63,7 +75,7 @@ function Login() {
 
         <div className="remember">
           <input type="checkbox" required id="remember_" />
-          <label for="remember_"> Remember me </label>
+          <label htmlFor="remember_"> Remember me </label>
         </div>
 
         <input className="log-in-01" type="submit" value="Login" />

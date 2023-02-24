@@ -3,8 +3,10 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import Return_only_number from "../../js/Return_only_number";
+import { useRouter } from "next/router";
 
 const Signup = () => {
+  const router = useRouter();
   let [nid_number, set_nid_number] = useState("");
 
   function handleKeyup(e) {
@@ -12,6 +14,11 @@ const Signup = () => {
     e.target.value = x;
 
     set_nid_number(x);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    router.push("/home");
   }
 
   return (
@@ -24,7 +31,12 @@ const Signup = () => {
       </Head>
 
       <div className="signup-body">
-        <form className="form1">
+        <form
+          className="form1"
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
           <div className="txt-c-01 for-sign-up">
             <div>
               <Image
