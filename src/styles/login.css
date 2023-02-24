@@ -1,6 +1,6 @@
 h1 {
   color: var(--deep-black);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 p,
@@ -63,7 +63,7 @@ label,
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .form1 input {
@@ -74,6 +74,10 @@ label,
   border: 0px;
 
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+.form1 [type="submit"] {
+  margin-top: 20px;
 }
 
 [type="radio"] {
@@ -205,7 +209,6 @@ p span {
   font-size: 0.9em;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
 }
 
 [type="checkbox"] {
@@ -317,6 +320,11 @@ p span {
 
 [for="remember_"] {
   user-select: none;
+}
+
+.already-acccount-class,
+.register > p {
+  font-weight: 500;
 }
 
 @media screen and (max-width: 425px) {
