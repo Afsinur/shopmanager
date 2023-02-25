@@ -84,13 +84,26 @@ let NavDiv = styled.div`
           box-shadow: 0px 0px 4px 2px #4169e144;
         }
       }
+
+      @media screen and (max-width: 425px) {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        justify-content: space-between;
+
+        li {
+          margin: 0 0;
+        }
+      }
     }
   }
 `;
 
 const Navbar = () => {
   let logoImgHeightWidth = 36;
-  let linkImgHeightWidth = 30;
+  let linkImgHeightWidth = 22;
 
   return (
     <NavDiv>
