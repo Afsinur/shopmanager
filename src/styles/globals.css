@@ -8,6 +8,12 @@ html {
   --font-family: "Poppins", sans-serif;
   --deep-black: #444444;
   --light-black: #666666;
+
+  --th-color: #888;
+  --td-border-bottom-color: #e9e0e0;
+  --td-border-bottom-hover-color: #6c90fc;
+
+  --theme-main-color: #4169e1;
 }
 
 * {
@@ -32,4 +38,15 @@ html {
   padding: 5px;
 
   box-shadow: 0px 0px 4px 2px #4169e1;
+
+  animation: activeNavAnim 150ms ease-in-out 1 forwards;
+}
+
+@keyframes activeNavAnim {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

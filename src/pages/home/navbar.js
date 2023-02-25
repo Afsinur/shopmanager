@@ -40,7 +40,7 @@ let NavDiv = styled.div`
         p.website-name {
           font-size: 1.05rem;
           font-weight: 500;
-          color: var(--deep-color);
+          color: var(--deep-black);
         }
 
         p.website-slogan {
@@ -50,6 +50,8 @@ let NavDiv = styled.div`
       }
 
       @media screen and (max-width: 425px) {
+        z-index: 999;
+
         padding: 4px;
 
         position: fixed;
@@ -97,6 +99,10 @@ let NavDiv = styled.div`
           justify-content: center;
 
           padding: 5px;
+
+          transition: 150ms ease-in-out;
+          transition-property: background-color, border-radius, padding,
+            box-shadow;
         }
 
         :not(:nth-child(1)) a:hover {
@@ -109,6 +115,8 @@ let NavDiv = styled.div`
       }
 
       @media screen and (max-width: 425px) {
+        z-index: 999;
+
         position: fixed;
         bottom: 0;
         left: 0;
