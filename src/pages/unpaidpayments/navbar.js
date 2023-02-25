@@ -111,90 +111,93 @@ const Navbar = () => {
   if (winSize.width <= 425) {
     logoImgHeightWidth = 36;
     linkImgHeightWidth = 22;
-  } else {
+  } else if (winSize.width > 425) {
     logoImgHeightWidth = 40;
     linkImgHeightWidth = 28;
   }
 
   return (
-    <NavDiv>
-      <div className="nav-content-wrapper">
-        <div>
+    logoImgHeightWidth &&
+    linkImgHeightWidth && (
+      <NavDiv>
+        <div className="nav-content-wrapper">
           <div>
-            <Image
-              src="/img/logo.png"
-              alt="logo"
-              title="Shop Manager"
-              width={logoImgHeightWidth}
-              height={logoImgHeightWidth}
-            />
+            <div>
+              <Image
+                src="/img/logo.png"
+                alt="logo"
+                title="Shop Manager"
+                width={logoImgHeightWidth}
+                height={logoImgHeightWidth}
+              />
+            </div>
+
+            <div>
+              <p className="website-name">Shop Manager</p>
+              <p className="website-slogan">Make it easy</p>
+            </div>
           </div>
 
-          <div>
-            <p className="website-name">Shop Manager</p>
-            <p className="website-slogan">Make it easy</p>
-          </div>
+          <ul>
+            <li>
+              <Link href="./home">
+                <Image
+                  src="/img/svg/home.svg"
+                  alt="home"
+                  title="Home"
+                  height={linkImgHeightWidth}
+                  width={linkImgHeightWidth}
+                />
+              </Link>
+            </li>
+            <li>
+              <Link href="./createstorenewpage">
+                <Image
+                  src="/img/svg/new-page.svg"
+                  alt="new page"
+                  title="New Page"
+                  height={linkImgHeightWidth}
+                  width={linkImgHeightWidth}
+                />
+              </Link>
+            </li>
+            <li>
+              <Link href="./unpaidpayments" className="active_">
+                <Image
+                  src="/img/svg/active/payments.svg"
+                  alt="unpaidpayments"
+                  title="Unpaid Payments"
+                  height={linkImgHeightWidth}
+                  width={linkImgHeightWidth}
+                />
+              </Link>
+            </li>
+            <li>
+              <Link href="./managestore">
+                <Image
+                  src="/img/svg/cart.svg"
+                  alt="managestore"
+                  title="Store Management"
+                  height={linkImgHeightWidth}
+                  width={linkImgHeightWidth}
+                />
+              </Link>
+            </li>
+            <li>
+              <Link href="./storesettings">
+                <Image
+                  src="/img/svg/settings.svg"
+                  alt="settings"
+                  title="Settings"
+                  height={linkImgHeightWidth}
+                  width={linkImgHeightWidth}
+                />
+              </Link>
+            </li>
+          </ul>
         </div>
-
-        <ul>
-          <li>
-            <Link href="./home">
-              <Image
-                src="/img/svg/home.svg"
-                alt="home"
-                title="Home"
-                height={linkImgHeightWidth}
-                width={linkImgHeightWidth}
-              />
-            </Link>
-          </li>
-          <li>
-            <Link href="./createstorenewpage">
-              <Image
-                src="/img/svg/new-page.svg"
-                alt="new page"
-                title="New Page"
-                height={linkImgHeightWidth}
-                width={linkImgHeightWidth}
-              />
-            </Link>
-          </li>
-          <li>
-            <Link href="./unpaidpayments" className="active_">
-              <Image
-                src="/img/svg/active/payments.svg"
-                alt="unpaidpayments"
-                title="Unpaid Payments"
-                height={linkImgHeightWidth}
-                width={linkImgHeightWidth}
-              />
-            </Link>
-          </li>
-          <li>
-            <Link href="./managestore">
-              <Image
-                src="/img/svg/cart.svg"
-                alt="managestore"
-                title="Store Management"
-                height={linkImgHeightWidth}
-                width={linkImgHeightWidth}
-              />
-            </Link>
-          </li>
-          <li>
-            <Link href="./storesettings">
-              <Image
-                src="/img/svg/settings.svg"
-                alt="settings"
-                title="Settings"
-                height={linkImgHeightWidth}
-                width={linkImgHeightWidth}
-              />
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </NavDiv>
+      </NavDiv>
+    )
   );
 };
 
