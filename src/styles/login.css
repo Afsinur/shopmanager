@@ -343,4 +343,10 @@ p span {
   .for-sign-up > div:nth-child(2) > h1 {
     font-size: 5.2vw;
   }
+
+  .logo-container-2nd-div h1 {
+    font-size: 7.6vw;
+    display: flex;
+    flex-direction: column;
+  }
 }
