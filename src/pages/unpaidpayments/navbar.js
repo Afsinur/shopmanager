@@ -47,6 +47,27 @@ let NavDiv = styled.div`
           font-weight: 300;
         }
       }
+
+      @media screen and (max-width: 425px) {
+        padding: 4px;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        background-color: aliceblue;
+
+        div:nth-child(1),
+        div:nth-child(2) {
+          position: relative;
+          width: fit-content;
+        }
+      }
     }
 
     ul {

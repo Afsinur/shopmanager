@@ -21,6 +21,7 @@ let NavDiv = styled.div`
     justify-content: space-between;
 
     div:nth-child(1) {
+      position: relative;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -45,6 +46,27 @@ let NavDiv = styled.div`
         p.website-slogan {
           font-size: 0.7rem;
           font-weight: 300;
+        }
+      }
+
+      @media screen and (max-width: 425px) {
+        padding: 4px;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        background-color: aliceblue;
+
+        div:nth-child(1),
+        div:nth-child(2) {
+          position: relative;
+          width: fit-content;
         }
       }
     }
