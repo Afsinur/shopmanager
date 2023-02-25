@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import useWindowSize from "@/js/hooks/useWindowSize";
 
 let NavDiv = styled.div`
   display: flex;
@@ -102,8 +103,18 @@ let NavDiv = styled.div`
 `;
 
 const Navbar = () => {
-  let logoImgHeightWidth = 36;
-  let linkImgHeightWidth = 22;
+  let winSize = useWindowSize();
+
+  let logoImgHeightWidth;
+  let linkImgHeightWidth;
+
+  if (winSize.width <= 425) {
+    logoImgHeightWidth = 36;
+    linkImgHeightWidth = 22;
+  } else {
+    logoImgHeightWidth = 40;
+    linkImgHeightWidth = 28;
+  }
 
   return (
     <NavDiv>
