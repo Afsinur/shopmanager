@@ -1,6 +1,4 @@
-import Link from "next/link";
 import Head from "next/head";
-import Image from "next/image";
 import Navbar from "./navbar";
 import styled from "styled-components";
 import HomepageContent from "./HomepageContent";

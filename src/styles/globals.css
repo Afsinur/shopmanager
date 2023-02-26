@@ -9,7 +9,8 @@ html {
   --deep-black: #444444;
   --light-black: #666666;
 
-  --th-color: #888;
+  --th-color: #a2a2a2;
+  --td-color: #525252;
   --td-border-bottom-color: #e9e0e0;
   --td-border-bottom-hover-color: #6c90fc;
 
@@ -40,6 +41,10 @@ html {
   box-shadow: 0px 0px 4px 2px #4169e1;
 
   animation: activeNavAnim 150ms ease-in-out 1 forwards;
+}
+
+.dont-anim-on-active {
+  animation: unset;
 }
 
 @keyframes activeNavAnim {

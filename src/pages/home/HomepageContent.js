@@ -1,5 +1,7 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import styled from "styled-components";
+
 const HomePageDiv = styled.div`
   overflow-x: hidden;
 
@@ -84,23 +86,35 @@ const HomePageDiv = styled.div`
       th,
       td {
         vertical-align: top;
+        font-size: 0.875rem;
       }
 
       th {
         padding: 0 12px 12px 12px;
         text-align: left;
 
-        font-size: 0.96rem;
         font-weight: 300;
         color: var(--th-color);
       }
 
       td {
         padding: 12px;
-        color: var(--deep-black);
+        color: var(--td-color);
       }
 
       tbody {
+        td:last-child {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          > img {
+            opacity: 0;
+            transition: 150ms ease-in-out;
+            transition-property: opacity;
+          }
+        }
+
         > tr:not(:nth-child(1)) {
           td {
             transition: 150ms ease-in-out;
@@ -113,6 +127,16 @@ const HomePageDiv = styled.div`
         > tr:hover + tr {
           td {
             border-top: 1px solid var(--td-border-bottom-hover-color);
+          }
+        }
+
+        > tr:hover {
+          cursor: pointer;
+
+          td:last-child {
+            > img {
+              opacity: 1;
+            }
           }
         }
       }
@@ -131,6 +155,7 @@ const HomePageDiv = styled.div`
 
 const HomepageContent = () => {
   let searchIconWidthHeight = 16;
+
   let tableHead = ["Name", "Phone Number", "Date", "Catagory"];
   let tableData = [
     {
@@ -212,7 +237,12 @@ const HomepageContent = () => {
       <div className="tableDiv">
         <div className="search">
           <div>
-            <input id="homeSearch" type="text" className="search-input" />
+            <input
+              id="homeSearch"
+              type="text"
+              className="search-input"
+              placeholder="Search.."
+            />
             <label htmlFor="homeSearch">
               <Image
                 src="/img/svg/search.svg"
@@ -244,13 +274,41 @@ const HomepageContent = () => {
 };
 
 function TableRowWithData({ itm }) {
+  let router = useRouter();
+  let rightArrowIconWidthHeight = 18;
+  let paidIconWidthHeight = 22;
+
   let { name, phoneNumber, date, catagory } = itm;
   return (
-    <tr>
+    <tr
+      onClick={() => {
+        router.push(`./home/details/${JSON.stringify(itm)}`);
+      }}
+    >
       <td>{name}</td>
       <td>{phoneNumber}</td>
       <td>{date}</td>
-      <td>{catagory}</td>
+      <td title={catagory === "paid" ? "Paid" : "Unpaid"}>
+        <span>
+          <Image
+            src={
+              catagory === "paid"
+                ? "/img/svg/active/paid.svg"
+                : "/img/svg/paid.svg"
+            }
+            alt="paid"
+            width={paidIconWidthHeight}
+            height={paidIconWidthHeight}
+          />
+        </span>
+
+        <Image
+          src="/img/svg/arrow_right.svg"
+          alt="arrow-right"
+          width={rightArrowIconWidthHeight}
+          height={rightArrowIconWidthHeight}
+        />
+      </td>
     </tr>
   );
 }
