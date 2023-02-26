@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+
+const server = "http://localhost:5252";
 
 const HomePageDiv = styled.div`
   overflow-x: hidden;
@@ -156,81 +159,24 @@ const HomePageDiv = styled.div`
 const HomepageContent = () => {
   let searchIconWidthHeight = 16;
 
-  let tableHead = ["Name", "Phone Number", "Date", "Catagory"];
-  let tableData = [
-    {
-      name: "Jahidul Islam Hridoy",
-      phoneNumber: "017xxxxxxx1",
-      date: "2 Feb 2023",
-      catagory: "paid",
-    },
-    {
-      name: "Shahriar MD. Afsinur Rahman",
-      phoneNumber: "017xxxxxxx2",
-      date: "3 Feb 2023",
-      catagory: "unpaid",
-    },
-    {
-      name: "MD Safwanur Rahman Sayem",
-      phoneNumber: "017xxxxxxx3",
-      date: "4 Feb 2023",
-      catagory: "paid",
-    },
-    {
-      name: "Jahidul Islam Hridoy",
-      phoneNumber: "017xxxxxxx1",
-      date: "2 Feb 2023",
-      catagory: "paid",
-    },
-    {
-      name: "Shahriar MD. Afsinur Rahman",
-      phoneNumber: "017xxxxxxx2",
-      date: "3 Feb 2023",
-      catagory: "unpaid",
-    },
-    {
-      name: "MD Safwanur Rahman Sayem",
-      phoneNumber: "017xxxxxxx3",
-      date: "4 Feb 2023",
-      catagory: "paid",
-    },
-    {
-      name: "Jahidul Islam Hridoy",
-      phoneNumber: "017xxxxxxx1",
-      date: "2 Feb 2023",
-      catagory: "paid",
-    },
-    {
-      name: "Shahriar MD. Afsinur Rahman",
-      phoneNumber: "017xxxxxxx2",
-      date: "3 Feb 2023",
-      catagory: "unpaid",
-    },
-    {
-      name: "MD Safwanur Rahman Sayem",
-      phoneNumber: "017xxxxxxx3",
-      date: "4 Feb 2023",
-      catagory: "paid",
-    },
-    {
-      name: "Jahidul Islam Hridoy",
-      phoneNumber: "017xxxxxxx1",
-      date: "2 Feb 2023",
-      catagory: "paid",
-    },
-    {
-      name: "Shahriar MD. Afsinur Rahman",
-      phoneNumber: "017xxxxxxx2",
-      date: "3 Feb 2023",
-      catagory: "unpaid",
-    },
-    {
-      name: "MD Safwanur Rahman Sayem",
-      phoneNumber: "017xxxxxxx3",
-      date: "4 Feb 2023",
-      catagory: "paid",
-    },
-  ];
+  const [tableHead, setTableHead] = useState([]);
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      let res = await fetch(`${server}/api/home/tablehead`);
+      let data = await res.json();
+
+      setTableHead(data);
+    })();
+
+    (async () => {
+      let res = await fetch(`${server}/api/home/tabledata`);
+      let data = await res.json();
+
+      setTableData(data);
+    })();
+  }, []);
 
   return (
     <HomePageDiv>
@@ -257,15 +203,14 @@ const HomepageContent = () => {
         <table>
           <thead>
             <tr>
-              {tableHead.map((itm, i) => (
-                <th key={i}>{itm}</th>
-              ))}
+              {tableHead && tableHead.map((itm, i) => <th key={i}>{itm}</th>)}
             </tr>
           </thead>
           <tbody>
-            {tableData.map((itm, i) => (
-              <TableRowWithData itm={itm} key={i} />
-            ))}
+            {tableData &&
+              tableData.map((itm, i) => (
+                <TableRowWithData itm={itm} key={i} id_={i} />
+              ))}
           </tbody>
         </table>
       </div>
@@ -273,7 +218,7 @@ const HomepageContent = () => {
   );
 };
 
-function TableRowWithData({ itm }) {
+function TableRowWithData({ itm, id_ }) {
   let router = useRouter();
   let rightArrowIconWidthHeight = 18;
   let paidIconWidthHeight = 22;
@@ -282,7 +227,7 @@ function TableRowWithData({ itm }) {
   return (
     <tr
       onClick={() => {
-        router.push(`./home/details/${JSON.stringify(itm)}`);
+        router.push(`./home/details/${id_.toString()}`);
       }}
     >
       <td>{name}</td>

@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Navbar from "./navbar";
 
+const server = "http://localhost:5252";
+
 const DetailsBodyContainer = styled.div`
   width: 100%;
   height: 100vh;
@@ -18,7 +20,36 @@ const CustomerDetailsContainer = styled.div`
   }
 `;
 
-const Details = () => {
+export const getStaticPaths = async function () {
+  let tableDataRes = await fetch(`${server}/api/home/tabledata`);
+  let tableDataData = await tableDataRes.json();
+
+  let paths = tableDataData.map((itm, i) => {
+    return {
+      params: { id: i.toString() },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps = async function (context) {
+  let id = context.params.id;
+
+  let tableDataRes = await fetch(`${server}/api/home/tabledata/${id}`);
+  let tableDataData = await tableDataRes.json();
+
+  let { data } = tableDataData;
+
+  return {
+    props: { itm: data },
+  };
+};
+
+const Index = ({ itm }) => {
   return (
     <>
       <Head>
@@ -27,25 +58,22 @@ const Details = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/img/logo.png" />
       </Head>
-      <DetailsBody />
+      <DetailsBody itm={itm} />
     </>
   );
 };
 
-function DetailsBody() {
+function DetailsBody({ itm }) {
   return (
     <DetailsBodyContainer>
       <Navbar />
-      <CustomerDetails />
+      <CustomerDetails itm={itm} />
     </DetailsBodyContainer>
   );
 }
 
-function CustomerDetails() {
-  let router = useRouter();
-  let { id } = router.query;
-  let parsedId = JSON.parse(id);
-  let { name, phoneNumber, date, catagory } = parsedId;
+function CustomerDetails({ itm }) {
+  let { name, phoneNumber, date, catagory } = itm;
 
   return (
     <CustomerDetailsContainer>
@@ -62,4 +90,4 @@ function CustomerDetails() {
   );
 }
 
-export default Details;
+export default Index;
