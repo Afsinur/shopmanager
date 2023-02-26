@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const server = "http://localhost:5252";
+const server = "https://temporaryshopmanagerapi.onrender.com";
 
 const HomePageDiv = styled.div`
   overflow-x: hidden;

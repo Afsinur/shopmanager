@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Navbar from "./navbar";
 
-const server = "http://localhost:5252";
+const server = "https://temporaryshopmanagerapi.onrender.com";
 
 const DetailsBodyContainer = styled.div`
   width: 100%;
