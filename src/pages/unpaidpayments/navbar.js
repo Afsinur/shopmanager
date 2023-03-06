@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 import useWindowSize from "@/js/hooks/useWindowSize";
+import React from "react";
+import Fade from "react-reveal/Fade";
+import Flip from "react-reveal/Flip";
 
 let NavDiv = styled.div`
   display: flex;
@@ -73,6 +76,8 @@ let NavDiv = styled.div`
     }
 
     ul {
+      overflow: hidden;
+
       list-style: none;
       display: flex;
       flex-direction: row;
@@ -151,78 +156,86 @@ const Navbar = () => {
       <NavDiv>
         <div className="nav-content-wrapper">
           <div>
-            <div>
-              <Image
-                src="/img/logo.png"
-                alt="logo"
-                title="Shop Manager"
-                width={logoImgHeightWidth}
-                height={logoImgHeightWidth}
-              />
-            </div>
+            <Fade left>
+              <div>
+                <Image
+                  src="/img/logo.png"
+                  alt="logo"
+                  title="Shop Manager"
+                  width={logoImgHeightWidth}
+                  height={logoImgHeightWidth}
+                />
+              </div>
+            </Fade>
 
             <div>
-              <p className="website-name">Shop Manager</p>
-              <p className="website-slogan">Make it easy</p>
+              <Flip right>
+                <p className="website-name">Shop Manager</p>
+              </Flip>
+              <Flip right>
+                <p className="website-slogan">Make it easy</p>
+              </Flip>
             </div>
           </div>
 
           <ul>
-            <li>
-              <Link href="./home">
-                <Image
-                  src="/img/svg/home.svg"
-                  alt="home"
-                  title="Home"
-                  height={linkImgHeightWidth}
-                  width={linkImgHeightWidth}
-                />
-              </Link>
-            </li>
-            <li>
-              <Link href="./createstorenewpage">
-                <Image
-                  src="/img/svg/new-page.svg"
-                  alt="new page"
-                  title="New Page"
-                  height={linkImgHeightWidth}
-                  width={linkImgHeightWidth}
-                />
-              </Link>
-            </li>
-            <li>
-              <Link href="./unpaidpayments" className="active_">
-                <Image
-                  src="/img/svg/active/payments.svg"
-                  alt="unpaidpayments"
-                  title="Unpaid Payments"
-                  height={linkImgHeightWidth}
-                  width={linkImgHeightWidth}
-                />
-              </Link>
-            </li>
-            <li>
-              <Link href="./managestore">
-                <Image
-                  src="/img/svg/cart.svg"
-                  alt="managestore"
-                  title="Store Management"
-                  height={linkImgHeightWidth}
-                  width={linkImgHeightWidth}
-                />
-              </Link>
-            </li>
-            <li>
-              <Link href="./storesettings">
-                <Image
-                  src="/img/svg/settings.svg"
-                  alt="settings"
-                  title="Settings"
-                  height={linkImgHeightWidth}
-                  width={linkImgHeightWidth}
-                />
-              </Link>
-            </li>
+            <Fade bottom>
+              <li>
+                <Link href="./home">
+                  <Image
+                    src="/img/svg/home.svg"
+                    alt="home"
+                    title="Home"
+                    height={linkImgHeightWidth}
+                    width={linkImgHeightWidth}
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link href="./createstorenewpage">
+                  <Image
+                    src="/img/svg/new-page.svg"
+                    alt="new page"
+                    title="New Page"
+                    height={linkImgHeightWidth}
+                    width={linkImgHeightWidth}
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link href="./unpaidpayments" className="active_">
+                  <Image
+                    src="/img/svg/active/payments.svg"
+                    alt="unpaidpayments"
+                    title="Unpaid Payments"
+                    height={linkImgHeightWidth}
+                    width={linkImgHeightWidth}
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link href="./managestore">
+                  <Image
+                    src="/img/svg/cart.svg"
+                    alt="managestore"
+                    title="Store Management"
+                    height={linkImgHeightWidth}
+                    width={linkImgHeightWidth}
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link href="./storesettings">
+                  <Image
+                    src="/img/svg/settings.svg"
+                    alt="settings"
+                    title="Settings"
+                    height={linkImgHeightWidth}
+                    width={linkImgHeightWidth}
+                  />
+                </Link>
+              </li>
+            </Fade>
           </ul>
         </div>
       </NavDiv>

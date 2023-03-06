@@ -1,8 +1,7 @@
-import Link from "next/link";
 import Head from "next/head";
-import Image from "next/image";
 import Navbar from "./navbar";
 import styled from "styled-components";
+import AddCustomerData from "./AddCustomerData";
 
 const BodyContainer = styled.div`
   width: 100%;
@@ -27,6 +26,7 @@ function Body() {
   return (
     <BodyContainer>
       <Navbar />
+      <AddCustomerData />
     </BodyContainer>
   );
 }

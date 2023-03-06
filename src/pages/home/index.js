@@ -6,6 +6,8 @@ import HomepageContent from "./HomepageContent";
 const BodyContainer = styled.div`
   width: 100%;
   height: 100vh;
+
+  overflow: hidden;
 `;
 
 const Home = () => {
@@ -26,6 +28,7 @@ function Body() {
   return (
     <BodyContainer>
       <Navbar />
+
       <HomepageContent />
     </BodyContainer>
   );
