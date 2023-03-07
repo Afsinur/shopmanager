@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Navbar from "./navbar";
 import styled from "styled-components";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
 
 const BodyContainer = styled.div`
   width: 100%;
@@ -24,11 +25,56 @@ const Home = () => {
 };
 
 function Body() {
+  const { data: session } = useSession();
+  console.log(session);
+
   return (
     <BodyContainer>
       <Navbar />
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <div style={{ width: "80%" }}>
+          {session && (
+            <>
+              <p>{session.user.email}</p>
+              <p>{session.user.name}</p>
+              <p>
+                <img
+                  src={session.user.image}
+                  alt="google-account-image"
+                  style={{ borderRadius: "50px" }}
+                />
+              </p>
+
+              <button
+                onClick={() => {
+                  signOut();
+                }}
+              >
+                signOut
+              </button>
+            </>
+          )}
+        </div>
+      </div>
     </BodyContainer>
   );
 }
 
 export default Home;
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+  console.log(session);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signup",
+      },
+    };
+  } else {
+    return {
+      props: { session },
+    };
+  }
+};

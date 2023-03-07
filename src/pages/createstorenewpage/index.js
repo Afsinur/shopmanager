@@ -2,6 +2,7 @@ import Head from "next/head";
 import Navbar from "./navbar";
 import styled from "styled-components";
 import AddCustomerData from "./AddCustomerData";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
 
 const BodyContainer = styled.div`
   width: 100%;
@@ -32,3 +33,19 @@ function Body() {
 }
 
 export default Home;
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+  console.log(session);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signup",
+      },
+    };
+  } else {
+    return {
+      props: { session },
+    };
+  }
+};

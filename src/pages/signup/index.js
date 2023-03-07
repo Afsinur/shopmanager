@@ -1,11 +1,15 @@
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Return_only_number from "../../js/Return_only_number";
 import { useRouter } from "next/router";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
 
 const Signup = () => {
+  const { data: session } = useSession();
+  console.log(session);
+
   const router = useRouter();
   let [nid_number, set_nid_number] = useState("");
 
@@ -18,6 +22,10 @@ const Signup = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    router.push("/home");
+  }
+
+  if (session) {
     router.push("/home");
   }
 
@@ -84,7 +92,6 @@ const Signup = () => {
               handleKeyup(e);
             }}
           />
-          <input type="text" placeholder="Email Address" required />
           <input
             type="text"
             placeholder="Phone Number"
@@ -93,6 +100,8 @@ const Signup = () => {
               handleKeyup(e);
             }}
           />
+          <input type="email" placeholder="Email Address" required />
+          <input type="password" placeholder="Password" required />
 
           <p className="gender-p">
             <input type="radio" name="Gender" id="Male" />
@@ -118,9 +127,42 @@ const Signup = () => {
           Already have an Account!
           <Link href="./">Login</Link>
         </p>
+
+        <div>
+          {session && (
+            <>
+              <p>{session.user.email}</p>
+              <button
+                onClick={() => {
+                  signOut();
+                }}
+              >
+                signOut
+              </button>
+            </>
+          )}
+          {!session && (
+            <button
+              onClick={() => {
+                signIn();
+              }}
+            >
+              signIn
+            </button>
+          )}
+        </div>
       </div>
     </>
   );
 };
 
 export default Signup;
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+  console.log(session);
+
+  return {
+    props: { session },
+  };
+};
