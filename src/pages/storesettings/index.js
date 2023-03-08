@@ -4,6 +4,8 @@ import Image from "next/image";
 import Navbar from "./navbar";
 import styled from "styled-components";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const BodyContainer = styled.div`
   width: 100%;
@@ -25,8 +27,19 @@ const Home = () => {
 };
 
 function Body() {
+  const router = useRouter();
   const { data: session } = useSession();
   console.log(session);
+
+  useEffect(() => {
+    function gotoSignup() {
+      router.push("/signup");
+    }
+
+    if (!session) {
+      gotoSignup();
+    }
+  });
 
   return (
     <BodyContainer>
