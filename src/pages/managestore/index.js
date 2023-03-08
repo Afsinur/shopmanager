@@ -25,6 +25,12 @@ const Home = () => {
 };
 
 function Body() {
+  const { data: session } = useSession();
+  console.log(session);
+  if (!session) {
+    router.push("/signup");
+  }
+
   return (
     <BodyContainer>
       <Navbar />
@@ -33,19 +39,3 @@ function Body() {
 }
 
 export default Home;
-export const getServerSideProps = async (context) => {
-  const session = await getSession(context);
-  console.log(session);
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/signup",
-      },
-    };
-  } else {
-    return {
-      props: { session },
-    };
-  }
-};
