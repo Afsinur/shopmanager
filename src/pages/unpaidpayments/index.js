@@ -3,7 +3,6 @@ import Head from "next/head";
 import Image from "next/image";
 import Navbar from "./navbar";
 import styled from "styled-components";
-import { useSession, signIn, signOut, getSession } from "next-auth/react";
 
 const BodyContainer = styled.div`
   width: 100%;
@@ -25,11 +24,6 @@ const Home = () => {
 };
 
 function Body() {
-  const { data: session } = useSession();
-  console.log(session);
-  if (!session) {
-    router.push("/signup");
-  }
   return (
     <BodyContainer>
       <Navbar />

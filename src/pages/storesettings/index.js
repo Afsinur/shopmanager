@@ -27,9 +27,6 @@ const Home = () => {
 function Body() {
   const { data: session } = useSession();
   console.log(session);
-  if (!session) {
-    router.push("/signup");
-  }
 
   return (
     <BodyContainer>
