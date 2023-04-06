@@ -1,12 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
 import Link from "next/link";
-import { useState } from "react";
-import Return_only_number from "../js/Return_only_number";
 import { useRouter } from "next/router";
-
-const inter = Inter({ subsets: ["latin"] });
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
+import { SignupCont } from "../../components/styles/common.styled";
+import PreLoad from "../../components/common/preLoad";
 
 export default function Home() {
   return (
@@ -17,35 +15,23 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/img/logo.png" />
       </Head>
+      <PreLoad />
       <Login />
     </>
   );
 }
 
 function Login() {
+  const { data: session } = useSession();
   const router = useRouter();
-  const [nid_number, set_nid_number] = useState("");
 
-  function handleKeyup(e) {
-    let x = Return_only_number(e.target.value);
-    e.target.value = x;
-
-    set_nid_number(x);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
+  if (session) {
     router.push("/home");
   }
 
   return (
     <div className="login-body">
-      <form
-        className="form1"
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-      >
+      <form className="form1">
         <div className="logo-container for-login">
           <div className="logo-container-1st-div">
             <Image
@@ -63,29 +49,25 @@ function Login() {
           </div>
         </div>
 
-        <input type="text" placeholder="Shop's Name" required />
-        <input
-          type="text"
-          placeholder="Phone Number"
-          required
-          onKeyUp={(e) => {
-            handleKeyup(e);
-          }}
-        />
-
-        <div className="remember">
-          <input type="checkbox" required id="remember_" />
-          <label htmlFor="remember_"> Remember me </label>
-        </div>
-
-        <input className="log-in-01" type="submit" value="Login" />
+        <SignupCont className="signup-btn">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              signIn();
+            }}
+          >
+            start managing
+          </button>
+        </SignupCont>
       </form>
-
-      <div className="register">
-        <p>
-          Don't have an account?<Link href="./signup">Register</Link>
-        </p>
-      </div>
     </div>
   );
 }
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  return {
+    props: { session },
+  };
+};

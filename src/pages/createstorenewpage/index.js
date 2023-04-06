@@ -1,10 +1,10 @@
 import Head from "next/head";
-import Navbar from "./navbar";
-import styled from "styled-components";
-import AddCustomerData from "./AddCustomerData";
+import Navbar from "../../../components/common/navbar";
+import styled from "@emotion/styled";
+import AddCustomerData from "../../../components/createstorenewpage/AddCustomerData";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import PreLoad from "../../../components/common/preLoad";
 
 const BodyContainer = styled.div`
   width: 100%;
@@ -28,21 +28,19 @@ const Home = () => {
 function Body() {
   const router = useRouter();
   const { data: session } = useSession();
-  console.log(session);
 
-  useEffect(() => {
-    function gotoSignup() {
-      router.push("/signup");
-    }
+  function gotoSignup() {
+    router.push("/");
+  }
 
-    if (!session) {
-      gotoSignup();
-    }
-  });
+  if (!session) {
+    gotoSignup();
+  }
 
   return (
     <BodyContainer>
-      <Navbar />
+      <PreLoad load="true" />
+      <Navbar pos="2" />
       <AddCustomerData />
     </BodyContainer>
   );

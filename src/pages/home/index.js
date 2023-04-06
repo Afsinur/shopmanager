@@ -1,10 +1,11 @@
 import Head from "next/head";
-import Navbar from "./navbar";
-import styled from "styled-components";
-import HomepageContent from "./HomepageContent";
+import Navbar from "../../../components/common/navbar";
+import styled from "@emotion/styled";
+import HomepageContent from "../../../components/home/HomepageContent";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import PreLoad from "../../../components/common/preLoad";
 
 const BodyContainer = styled.div`
   width: 100%;
@@ -34,7 +35,7 @@ function Body() {
 
   useEffect(() => {
     function gotoSignup() {
-      router.push("/signup");
+      router.push("/");
     }
 
     if (!session) {
@@ -44,8 +45,8 @@ function Body() {
 
   return (
     <BodyContainer>
-      <Navbar />
-
+      <PreLoad load="true" />
+      <Navbar pos="1" />
       <HomepageContent />
     </BodyContainer>
   );
