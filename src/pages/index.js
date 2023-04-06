@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import { SignupCont } from "../../components/styles/common.styled";
 import PreLoad from "../../components/common/preLoad";
+import { useEffect } from "react";
 
 export default function Home() {
   return (
@@ -25,9 +26,15 @@ function Login() {
   const { data: session } = useSession();
   const router = useRouter();
 
-  if (session) {
-    router.push("/home");
-  }
+  useEffect(() => {
+    function gotoSignup() {
+      router.push("/home");
+    }
+
+    if (session) {
+      gotoSignup();
+    }
+  });
 
   return (
     <div className="login-body">

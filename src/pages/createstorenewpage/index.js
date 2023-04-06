@@ -5,6 +5,7 @@ import AddCustomerData from "../../../components/createstorenewpage/AddCustomerD
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import PreLoad from "../../../components/common/preLoad";
+import { useEffect } from "react";
 
 const BodyContainer = styled.div`
   width: 100%;
@@ -29,13 +30,15 @@ function Body() {
   const router = useRouter();
   const { data: session } = useSession();
 
-  function gotoSignup() {
-    router.push("/");
-  }
+  useEffect(() => {
+    function gotoSignup() {
+      router.push("/");
+    }
 
-  if (!session) {
-    gotoSignup();
-  }
+    if (!session) {
+      gotoSignup();
+    }
+  });
 
   return (
     <BodyContainer>
